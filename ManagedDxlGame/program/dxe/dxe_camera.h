@@ -19,13 +19,13 @@ namespace dxe {
 		TNL_PROPERTY(float, Near, near_);
 		TNL_PROPERTY(float, Far, far_);
 
-		TNL_CALC_PROPERTY(tnl::Vector3, Position, position_);
+		TNL_CALC_PROPERTY(tnl::Vector3, Position, m_position);
 		TNL_CALC_PROPERTY(tnl::Vector3, Target, target_);
 		TNL_CALC_PROPERTY(tnl::Vector3, Upper, up_);
 
-		TNL_PROPERTY(float, PositionX, position_.x);
-		TNL_PROPERTY(float, PositionY, position_.y);
-		TNL_PROPERTY(float, PositionZ, position_.z);
+		TNL_PROPERTY(float, PositionX, m_position.x);
+		TNL_PROPERTY(float, PositionY, m_position.y);
+		TNL_PROPERTY(float, PositionZ, m_position.z);
 		TNL_PROPERTY(float, TargetX, target_.x);
 		TNL_PROPERTY(float, TargetY, target_.y);
 		TNL_PROPERTY(float, TargetZ, target_.z);
@@ -44,13 +44,13 @@ namespace dxe {
 		const tnl::Matrix& getProjectionMatrix() const noexcept { return proj_; }
 
 		// 正面ベクトルの取得
-		virtual inline tnl::Vector3 forward() { return tnl::Vector3::Normalize(target_ - position_); }
+		virtual inline tnl::Vector3 forward() { return tnl::Vector3::Normalize(target_ - m_position); }
 		// 右ベクトルの取得
 		virtual inline tnl::Vector3 left() { return tnl::Vector3::Cross(forward(), { 0, 1, 0 }); }
 		// 右ベクトルの取得
 		virtual inline tnl::Vector3 right() { return tnl::Vector3::Cross({ 0, 1, 0 }, forward()); }
 		// 後方ベクトルの取得
-		virtual inline tnl::Vector3 back() { return tnl::Vector3::Normalize(position_ - target_); }
+		virtual inline tnl::Vector3 back() { return tnl::Vector3::Normalize(m_position - target_); }
 
 
 		//----------------------------------------------------------------------------------------------
@@ -93,8 +93,6 @@ namespace dxe {
 		tnl::Matrix view_;
 		tnl::Matrix proj_;
 
-		// カメラの３次元座標
-		tnl::Vector3 position_;
 		// カメラが３次元のどこを画面の中央にとらえているか
 		tnl::Vector3 target_;
 		// カメラの『上』を定義するアッパーベクトル

@@ -12,12 +12,12 @@ class Component;
 // ゲーム内のオブジェクトとして扱うクラスの基底クラスインスタンスはスマートポインタで
 class Actor : public IManagableModule {
 protected:
-	std::list< Component* > components_;
-	tnl::Vector3 position_{ 0 };
-	tnl::Quaternion rotation_;
-	Level* placedLevel_ = nullptr;
-	std::string name_ = "";
-	bool enabled_ = true;
+	std::list< Component* > m_components;
+	tnl::Vector3 m_position{ 0 };
+	tnl::Quaternion m_rotation;
+	Level* m_placedLevel = nullptr;
+	std::string m_name = "";
+	bool m_enabled = true;
 	/* virtual functions FOR override */
 	// モジュールの初期化
 	virtual void Initialize();
@@ -31,9 +31,9 @@ protected:
 	virtual void Finalize();
 	/* auto properties */
 public:
-	AutoProperty(tnl::Vector3, Position, position_)
-		AutoProperty(tnl::Quaternion, Rotation, rotation_)
-		Getter(std::string, Name, name_)
+	AutoProperty(tnl::Vector3, Position, m_position)
+		AutoProperty(tnl::Quaternion, Rotation, m_rotation)
+		Getter(std::string, Name, m_name)
 		DEF_Create_shared_ptr(Actor)
 public:
 
@@ -66,8 +66,8 @@ public:
 	template<typename T>
 	static T GetComponent(const Actor* getComponentFrom)
 	{
-		auto it = getComponentFrom->components_.begin();
-		while (it != getComponentFrom->components_.end())
+		auto it = getComponentFrom->m_components.begin();
+		while (it != getComponentFrom->m_components.end())
 		{
 			auto r = static_cast<T>(*it);
 			if (r != nullptr)

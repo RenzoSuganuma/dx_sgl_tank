@@ -15,7 +15,7 @@ void Component::Draw() {}
 
 void Component::__initialize()
 {
-	enabled_ = true;
+	m_enabled = true;
 	Initialize();
 }
 
@@ -26,8 +26,8 @@ void Component::__update(float deltaTime)
 
 void Component::__finalize()
 {
-	attachedActor_ = nullptr;
-	enabled_ = false;
+	m_attachedActor = nullptr;
+	m_enabled = false;
 	Finalize();
 }
 
@@ -43,11 +43,11 @@ void Component::__release()
 
 const Actor* const Component::GetActor() const
 {
-	return attachedActor_;
+	return m_attachedActor;
 }
 
 void const Component::SetActor(const Actor* actor)
 {
-	attachedActor_ = actor;
+	m_attachedActor = actor;
 }
 

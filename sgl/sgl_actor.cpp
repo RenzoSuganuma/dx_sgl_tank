@@ -16,20 +16,20 @@ void Actor::Draw() {}
 
 void Actor::__initialize()
 {
-	auto it = components_.begin();
-	while (it != components_.end())
+	auto it = m_components.begin();
+	while (it != m_components.end())
 	{
 		(*it)->Initialize();
 		it++;
 	}
-	enabled_ = true;
+	m_enabled = true;
 	Initialize();
 }
 
 void Actor::__update(float deltaTime)
 {
-	auto it = components_.begin();
-	while (it != components_.end())
+	auto it = m_components.begin();
+	while (it != m_components.end())
 	{
 		(*it)->Update(deltaTime);
 		it++;
@@ -39,8 +39,8 @@ void Actor::__update(float deltaTime)
 
 void Actor::__draw()
 {
-	auto it = components_.begin();
-	while (it != components_.end())
+	auto it = m_components.begin();
+	while (it != m_components.end())
 	{
 		(*it)->Draw();
 		it++;
@@ -50,26 +50,26 @@ void Actor::__draw()
 
 void Actor::__release()
 {
-	auto it = components_.begin();
-	while (it != components_.end())
+	auto it = m_components.begin();
+	while (it != m_components.end())
 	{
 		(*it)->Release();
 		it++;
 	}
-	components_.clear();
+	m_components.clear();
 	Release();
 }
 
 void Actor::__finalize()
 {
-	auto it = components_.begin();
-	while (it != components_.end())
+	auto it = m_components.begin();
+	while (it != m_components.end())
 	{
 		(*it)->Finalize();
 		it++;
 	}
-	enabled_ = false;
-	placedLevel_ = nullptr;
+	m_enabled = false;
+	m_placedLevel = nullptr;
 	Finalize();
 }
 
@@ -78,18 +78,18 @@ std::list< Component* >::iterator
 const Actor::AddComponent(Component* component)
 {
 	component->SetActor(this);
-	components_.emplace_back(component);
-	auto it = components_.end();
+	m_components.emplace_back(component);
+	auto it = m_components.end();
 	it--;
 	return it;
 }
 
 void const Actor::RemoveComponent(const std::list<Component*>::iterator place)
 {
-	components_.erase(place);
+	m_components.erase(place);
 }
 
 void const Actor::SetPlacedLevel(const Level* level)
 {
-	placedLevel_ = const_cast<Level*>(level);
+	m_placedLevel = const_cast<Level*>(level);
 }

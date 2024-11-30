@@ -8,7 +8,7 @@ class Actor;
 // コンポーネントクラスの基底クラス
 class Component : public IManagableModule {
 protected:
-	const Actor* attachedActor_ = nullptr;
+	const Actor* m_attachedActor = nullptr;
 
 	// モジュールの初期化
 	void __initialize();
@@ -23,7 +23,7 @@ protected:
 public:
 	DEF_Create_shared_ptr(Component)
 public:
-	bool enabled_ = true;
+	bool m_enabled = true;
 
 	Component();
 	~Component();

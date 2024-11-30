@@ -15,6 +15,7 @@ public:
 
 	// モジュールの初期化
 	void Initialize() override {
+
 	}
 	// モジュールの更新
 	void Update(float delta_time) override {
@@ -30,11 +31,11 @@ public:
 				addPosition(v[ind] * 3.0f);
 			}, eKeys::KB_A, eKeys::KB_D, eKeys::KB_W, eKeys::KB_S);
 		auto vlook = tnl::Input::GetMouseVelocity();
-		rotation_ *= tnl::Quaternion::RotationAxis({ 0,1,0 }, tnl::ToRadian(vlook.x * 0.1f));
-		rotation_ *= tnl::Quaternion::RotationAxis(right(), tnl::ToRadian(vlook.y * 0.1f));
+		m_rotation *= tnl::Quaternion::RotationAxis({ 0,1,0 }, tnl::ToRadian(vlook.x * 0.1f));
+		m_rotation *= tnl::Quaternion::RotationAxis(right(), tnl::ToRadian(vlook.y * 0.1f));
 		// 姿勢パラメータからターゲット座標とアッパーベクトルを計算
-		target_ = position_ + tnl::Vector3::TransformCoord({ 0, 0, 1 }, rotation_);
-		up_ = tnl::Vector3::TransformCoord({ 0, 1, 0 }, rotation_);
+		target_ = m_position + tnl::Vector3::TransformCoord({ 0, 0, 1 }, m_rotation);
+		up_ = tnl::Vector3::TransformCoord({ 0, 1, 0 }, m_rotation);
 		dxe::Camera::update();
 	}
 	// モジュールの描画
@@ -46,14 +47,14 @@ public:
 
 
 	inline tnl::Vector3 up() {
-		up_ = tnl::Vector3::TransformCoord({ 0, 1, 0 }, rotation_);
+		up_ = tnl::Vector3::TransformCoord({ 0, 1, 0 }, m_rotation);
 		return up_;
 	}
 	inline tnl::Vector3 down() { return -up(); }
 
 	inline tnl::Vector3 forward() override {
-		target_ = position_ + tnl::Vector3::TransformCoord({ 0, 0, 1 }, rotation_);
-		return tnl::Vector3::Normalize(target_ - position_);
+		target_ = m_position + tnl::Vector3::TransformCoord({ 0, 0, 1 }, m_rotation);
+		return tnl::Vector3::Normalize(target_ - m_position);
 	}
 	inline tnl::Vector3 back() override { return -forward(); }
 	inline tnl::Vector3 left() override { return tnl::Vector3::Cross(forward(), up()); }
