@@ -15,7 +15,7 @@ public:
 
 	// モジュールの初期化
 	void Initialize() override {
-		m_name = "DEFAULT_CAM";
+
 	}
 	// モジュールの更新
 	void Update(float delta_time) override {

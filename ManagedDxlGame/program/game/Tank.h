@@ -1,6 +1,7 @@
 #pragma once
 #include "gm_main.h"
 #include "../dxe/dxe.h"
+#include "../library/sgl/sgl_level.h"
 #include "../library/sgl/sgl_actor.h"
 #include "../library/sgl/sgl_lang_extention.h"
 
@@ -29,7 +30,7 @@ public:
 	}
 	// モジュールの描画
 	void Draw() override {
-		m_mesh->render(camera);
+		m_mesh->render(m_placedLevel->mainCamera());
 	}
 	// モジュールの内での解放
 	void Release() override {

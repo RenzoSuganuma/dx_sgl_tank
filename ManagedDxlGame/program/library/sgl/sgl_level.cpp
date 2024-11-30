@@ -9,8 +9,11 @@ Level::~Level() {}
 
 void  Level::Initialize()
 {
-	auto itr = actors_.begin();
-	while (itr != actors_.end())
+	m_camera = std::make_shared<FPSCamera>(DXE_WINDOW_WIDTH_F, DXE_WINDOW_HEIGHT_F);
+	m_actors.emplace_back(m_camera.get());
+
+	auto itr = m_actors.begin();
+	while (itr != m_actors.end())
 	{
 		(*itr)->__initialize();
 		itr++;
@@ -19,8 +22,8 @@ void  Level::Initialize()
 
 void  Level::Update(float deltaTime)
 {
-	auto itr = actors_.begin();
-	while (itr != actors_.end())
+	auto itr = m_actors.begin();
+	while (itr != m_actors.end())
 	{
 		(*itr)->__update(deltaTime);
 		(*itr)->__draw();
@@ -30,8 +33,8 @@ void  Level::Update(float deltaTime)
 
 void  Level::Draw()
 {
-	auto itr = actors_.begin();
-	while (itr != actors_.end())
+	auto itr = m_actors.begin();
+	while (itr != m_actors.end())
 	{
 		(*itr)->__draw();
 		itr++;
@@ -40,8 +43,8 @@ void  Level::Draw()
 
 void  Level::Finalize()
 {
-	auto it = actors_.begin();
-	while (it != actors_.end())
+	auto it = m_actors.begin();
+	while (it != m_actors.end())
 	{
 		(*it)->__finalize();
 		++it;
@@ -50,46 +53,45 @@ void  Level::Finalize()
 
 void  Level::Release()
 {
-	auto it = actors_.begin();
-	while (it != actors_.end())
+	auto it = m_actors.begin();
+	while (it != m_actors.end())
 	{
 		(*it)->__release();
 		++it;
 	}
-	actors_.clear();
+	m_actors.clear();
 }
 
 void Level::DrawActorList()
 {
-	auto count_str = (std::to_string(actors_.size()) + "Actors");
+	auto count_str = (std::to_string(m_actors.size()) + "Actors");
 
 	DxLib::DrawString(DXE_WINDOW_WIDTH - 200, 30, count_str.c_str(), -1);
-	auto c = actors_.begin();
-	for (int i = 1; i <= actors_.size(); i++) {
+	auto c = m_actors.begin();
+	for (int i = 1; i <= m_actors.size(); i++) {
 		DxLib::DrawString(DXE_WINDOW_WIDTH - 200, 50 + (15 * i),
 			(std::to_string(i) + ":" + (*c)->getName()).c_str()
 			, -1);
 		c++;
 	}
-
 }
 
 const std::list< Actor* >::iterator
 const Level::AddActor(const Actor* obj)
 {
 	const_cast<Actor*>(obj)->SetPlacedLevel(this);
-	actors_.emplace_back(const_cast<Actor*>(obj));
-	auto it = actors_.end();
+	m_actors.emplace_back(const_cast<Actor*>(obj));
+	auto it = m_actors.end();
 	it--;
 	return it;
 }
 
 void const Level::RemoveActor(const Actor* obj)
 {
-	actors_.remove(const_cast<Actor*>(obj));
+	m_actors.remove(const_cast<Actor*>(obj));
 }
 
 void const Level::RemoveActor(const std::list< Actor* >::iterator place)
 {
-	actors_.erase(place);
+	m_actors.erase(place);
 }
