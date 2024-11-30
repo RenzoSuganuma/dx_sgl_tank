@@ -150,14 +150,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\sgl\sgl_actor.cpp" />
-    <ClCompile Include="..\sgl\sgl_component.cpp" />
-    <ClCompile Include="..\sgl\sgl_fpsCamera.cpp" />
-    <ClCompile Include="..\sgl\sgl_inputHandler.cpp" />
-    <ClCompile Include="..\sgl\sgl_level.cpp" />
-    <ClCompile Include="..\sgl\sgl_soundHandler.cpp" />
-    <ClCompile Include="..\sgl\sgl_stateMachine.cpp" />
-    <ClCompile Include="..\sgl\sgl_windowHandler.cpp" />
     <ClCompile Include="ManagedDxlGame.cpp" />
     <ClCompile Include="program\dxe\dxe.cpp" />
     <ClCompile Include="program\dxe\dxe_camera.cpp" />
@@ -203,7 +195,16 @@
     <ClCompile Include="program\dxe\OBJLoader.cpp" />
     <ClCompile Include="program\example\sgl\sgl_task_system_ex.cpp" />
     <ClCompile Include="program\game\gm_main.cpp" />
+    <ClCompile Include="program\game\Tank.cpp" />
     <ClCompile Include="program\library\json11.cpp" />
+    <ClCompile Include="program\library\sgl\sgl_actor.cpp" />
+    <ClCompile Include="program\library\sgl\sgl_component.cpp" />
+    <ClCompile Include="program\library\sgl\sgl_fpsCamera.cpp" />
+    <ClCompile Include="program\library\sgl\sgl_inputHandler.cpp" />
+    <ClCompile Include="program\library\sgl\sgl_level.cpp" />
+    <ClCompile Include="program\library\sgl\sgl_soundHandler.cpp" />
+    <ClCompile Include="program\library\sgl\sgl_stateMachine.cpp" />
+    <ClCompile Include="program\library\sgl\sgl_windowHandler.cpp" />
     <ClCompile Include="program\library\tnl_font_texture.cpp" />
     <ClCompile Include="program\library\tnl_input.cpp" />
     <ClCompile Include="program\library\tnl_instance.cpp" />
@@ -226,21 +227,6 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\sgl\sgl_actor.h" />
-    <ClInclude Include="..\sgl\sgl_blankTestModule.h" />
-    <ClInclude Include="..\sgl\sgl_collisionUtility.h" />
-    <ClInclude Include="..\sgl\sgl_component.h" />
-    <ClInclude Include="..\sgl\sgl_directxUtility.h" />
-    <ClInclude Include="..\sgl\sgl_fpsCamera.h" />
-    <ClInclude Include="..\sgl\sgl_inputHandler.h" />
-    <ClInclude Include="..\sgl\sgl_lang_extention.h" />
-    <ClInclude Include="..\sgl\sgl_level.h" />
-    <ClInclude Include="..\sgl\sgl_managableModules.h" />
-    <ClInclude Include="..\sgl\sgl_smTransition.h" />
-    <ClInclude Include="..\sgl\sgl_soundHandler.h" />
-    <ClInclude Include="..\sgl\sgl_stateMachine.h" />
-    <ClInclude Include="..\sgl\sgl_stateMachineBehaviour.h" />
-    <ClInclude Include="..\sgl\sgl_windowHandler.h" />
     <ClInclude Include="program\dxe\dxe.h" />
     <ClInclude Include="program\dxe\dxe_camera.h" />
     <ClInclude Include="program\dxe\dxe_data.h" />
@@ -318,7 +304,23 @@
     <ClInclude Include="program\example\util\exa_mediator.h" />
     <ClInclude Include="program\example\util\exa_single_oscillationy.h" />
     <ClInclude Include="program\game\gm_main.h" />
+    <ClInclude Include="program\game\Tank.h" />
     <ClInclude Include="program\library\json11.hpp" />
+    <ClInclude Include="program\library\sgl\sgl_actor.h" />
+    <ClInclude Include="program\library\sgl\sgl_blankTestModule.h" />
+    <ClInclude Include="program\library\sgl\sgl_collisionUtility.h" />
+    <ClInclude Include="program\library\sgl\sgl_component.h" />
+    <ClInclude Include="program\library\sgl\sgl_DirectXUtility.h" />
+    <ClInclude Include="program\library\sgl\sgl_fpsCamera.h" />
+    <ClInclude Include="program\library\sgl\sgl_inputHandler.h" />
+    <ClInclude Include="program\library\sgl\sgl_lang_extention.h" />
+    <ClInclude Include="program\library\sgl\sgl_level.h" />
+    <ClInclude Include="program\library\sgl\sgl_managableModules.h" />
+    <ClInclude Include="program\library\sgl\sgl_smTransition.h" />
+    <ClInclude Include="program\library\sgl\sgl_soundHandler.h" />
+    <ClInclude Include="program\library\sgl\sgl_stateMachine.h" />
+    <ClInclude Include="program\library\sgl\sgl_stateMachineBehaviour.h" />
+    <ClInclude Include="program\library\sgl\sgl_windowHandler.h" />
     <ClInclude Include="program\library\stb_image.h" />
     <ClInclude Include="program\library\tnl_csv.h" />
     <ClInclude Include="program\library\tnl_folder_tree.h" />

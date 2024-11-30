@@ -3,8 +3,8 @@
 #include "memory"
 #include "string"
 #include "DxLib.h"
-#include "tnl_vector3.h"
-#include "tnl_quaternion.h"
+#include "../tnl_vector3.h"
+#include "../tnl_quaternion.h"
 #include "sgl_lang_extention.h"
 #include "sgl_managableModules.h"
 class Level;

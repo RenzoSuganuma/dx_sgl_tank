@@ -3,7 +3,7 @@
 #include "list"
 #include "string"
 #include "DxLib.h"
-#include "tnl_vector3.h"
+#include "../tnl_vector3.h"
 #include "sgl_component.h"
 
 // 入力デバイスのタイプ

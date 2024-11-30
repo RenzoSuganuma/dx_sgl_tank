@@ -1,5 +1,5 @@
 ﻿#include "string"
-#include "../dxe/dxe.h"
+#include "../../dxe/dxe.h"
 #include "DxLib.h"
 #include "sgl_actor.h"
 #include "sgl_level.h"
@@ -61,12 +61,17 @@ void  Level::Release()
 
 void Level::DrawActorList()
 {
-	std::string list;
-	list += (std::to_string(actors_.size()) + "Actors\n");
-	for (auto a : actors_) {
-		list += (a->getName() + "\n");
+	auto count_str = (std::to_string(actors_.size()) + "Actors");
+
+	DxLib::DrawString(DXE_WINDOW_WIDTH - 200, 30, count_str.c_str(), -1);
+	auto c = actors_.begin();
+	for (int i = 1; i <= actors_.size(); i++) {
+		DxLib::DrawString(DXE_WINDOW_WIDTH - 200, 50 + (15 * i),
+			(std::to_string(i) + ":" + (*c)->getName()).c_str()
+			, -1);
+		c++;
 	}
-	DxLib::DrawString(DXE_WINDOW_WIDTH - 100, 100, list.c_str(), -1);
+
 }
 
 const std::list< Actor* >::iterator

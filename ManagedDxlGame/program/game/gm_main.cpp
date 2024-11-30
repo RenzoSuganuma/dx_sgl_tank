@@ -6,15 +6,19 @@
 #include "../dxe/dxe.h"
 #include "gm_main.h"
 // sglライブラリ展開---
-#include "../../sgl/sgl_actor.h"
-#include "../../sgl/sgl_level.h"
-#include "../../sgl/sgl_fpsCamera.h"
+#include "../library/sgl/sgl_actor.h"
+#include "../library/sgl/sgl_level.h"
+#include "../library/sgl/sgl_fpsCamera.h"
+// 展開
+#include "Tank.h"
 // ゲーム変数宣言---
 auto level = Level::CreateShared();
+auto player = Tank::CreateShared();
 std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>(DXE_WINDOW_WIDTH_F, DXE_WINDOW_HEIGHT_F);
 
 void placeActorToLevel() {
 	level->AddActor(camera.get());
+	level->AddActor(player.get());
 }
 
 //------------------------------------------------------------------------------------------------------------

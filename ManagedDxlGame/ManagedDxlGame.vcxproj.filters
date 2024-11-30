@@ -233,31 +233,34 @@
     <ClCompile Include="program\dxe\dxe_input.cpp">
       <Filter>program\[001] dxe</Filter>
     </ClCompile>
-    <ClCompile Include="..\sgl\sgl_actor.cpp">
-      <Filter>program\[005]sgl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sgl\sgl_component.cpp">
-      <Filter>program\[005]sgl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sgl\sgl_inputHandler.cpp">
-      <Filter>program\[005]sgl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sgl\sgl_level.cpp">
-      <Filter>program\[005]sgl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sgl\sgl_soundHandler.cpp">
-      <Filter>program\[005]sgl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sgl\sgl_windowHandler.cpp">
-      <Filter>program\[005]sgl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sgl\sgl_stateMachine.cpp">
-      <Filter>program\[005]sgl</Filter>
-    </ClCompile>
     <ClCompile Include="program\example\sgl\sgl_task_system_ex.cpp">
       <Filter>program\[002] example\[005]sgl</Filter>
     </ClCompile>
-    <ClCompile Include="..\sgl\sgl_fpsCamera.cpp">
+    <ClCompile Include="program\game\Tank.cpp">
+      <Filter>program\[004] game</Filter>
+    </ClCompile>
+    <ClCompile Include="program\library\sgl\sgl_actor.cpp">
+      <Filter>program\[005]sgl</Filter>
+    </ClCompile>
+    <ClCompile Include="program\library\sgl\sgl_component.cpp">
+      <Filter>program\[005]sgl</Filter>
+    </ClCompile>
+    <ClCompile Include="program\library\sgl\sgl_fpsCamera.cpp">
+      <Filter>program\[005]sgl</Filter>
+    </ClCompile>
+    <ClCompile Include="program\library\sgl\sgl_inputHandler.cpp">
+      <Filter>program\[005]sgl</Filter>
+    </ClCompile>
+    <ClCompile Include="program\library\sgl\sgl_level.cpp">
+      <Filter>program\[005]sgl</Filter>
+    </ClCompile>
+    <ClCompile Include="program\library\sgl\sgl_soundHandler.cpp">
+      <Filter>program\[005]sgl</Filter>
+    </ClCompile>
+    <ClCompile Include="program\library\sgl\sgl_stateMachine.cpp">
+      <Filter>program\[005]sgl</Filter>
+    </ClCompile>
+    <ClCompile Include="program\library\sgl\sgl_windowHandler.cpp">
       <Filter>program\[005]sgl</Filter>
     </ClCompile>
   </ItemGroup>
@@ -581,49 +584,52 @@
     <ClInclude Include="program\example\beginner\170_exa_intersect_csv_field_chip.h">
       <Filter>program\[002] example\[001] beginner</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_actor.h">
+    <ClInclude Include="program\game\Tank.h">
+      <Filter>program\[004] game</Filter>
+    </ClInclude>
+    <ClInclude Include="program\library\sgl\sgl_actor.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_component.h">
+    <ClInclude Include="program\library\sgl\sgl_blankTestModule.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_inputHandler.h">
+    <ClInclude Include="program\library\sgl\sgl_collisionUtility.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_lang_extention.h">
+    <ClInclude Include="program\library\sgl\sgl_component.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_level.h">
+    <ClInclude Include="program\library\sgl\sgl_DirectXUtility.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_soundHandler.h">
+    <ClInclude Include="program\library\sgl\sgl_fpsCamera.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_windowHandler.h">
+    <ClInclude Include="program\library\sgl\sgl_inputHandler.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_collisionUtility.h">
+    <ClInclude Include="program\library\sgl\sgl_lang_extention.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_directxUtility.h">
+    <ClInclude Include="program\library\sgl\sgl_level.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_stateMachine.h">
+    <ClInclude Include="program\library\sgl\sgl_managableModules.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_stateMachineBehaviour.h">
+    <ClInclude Include="program\library\sgl\sgl_smTransition.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_smTransition.h">
+    <ClInclude Include="program\library\sgl\sgl_soundHandler.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_managableModules.h">
+    <ClInclude Include="program\library\sgl\sgl_stateMachine.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_blankTestModule.h">
-      <Filter>program\[006]game_sources</Filter>
+    <ClInclude Include="program\library\sgl\sgl_stateMachineBehaviour.h">
+      <Filter>program\[005]sgl</Filter>
     </ClInclude>
-    <ClInclude Include="..\sgl\sgl_fpsCamera.h">
+    <ClInclude Include="program\library\sgl\sgl_windowHandler.h">
       <Filter>program\[005]sgl</Filter>
     </ClInclude>
   </ItemGroup>

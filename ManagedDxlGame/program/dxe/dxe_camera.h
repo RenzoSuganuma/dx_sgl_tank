@@ -1,5 +1,5 @@
 #pragma once
-#include "../../sgl/sgl_actor.h"
+#include "../library/sgl/sgl_actor.h"
 #include "../library/tnl_util.h"
 #include "../library/tnl_math.h"
 #include "../library/tnl_matrix.h"
