@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "list"
 #include "memory"
+#include "sgl_fpsCamera.h"
 #include "sgl_lang_extention.h"
 #include "sgl_managableModules.h"
 // 前方定義
@@ -9,6 +10,7 @@ class Actor;
 struct Level final : IManagableModule {
 private:
 	std::list< Actor* > actors_;
+	std::shared_ptr<FPSCamera> camera;
 
 public:
 	Level();
