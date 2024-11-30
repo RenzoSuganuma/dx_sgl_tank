@@ -14,35 +14,35 @@ namespace dxe {
 		aspect_ = (float)screen_w_ / (float)screen_h_;
 		dimension_ = dimension;
 		if (dimension == eDimension::Type3D) {
-			position_ = { 0, 200, -500 };
+			m_position = { 0, 200, -500 };
 			target_ = { 0, 0, 0 };
 		}
 		else {
-			position_ = { 0, 0, 0 };
+			m_position = { 0, 0, 0 };
 			target_ = { 0, 0, 10 };
 		}
 	}
 
 	//------------------------------------------------------------------------------------------------------------
 	tnl::Vector3 Camera::convertWorldToScreenPosition2D(const tnl::Vector3& world_position, float affect_weight) {
-		return world_position - ( position_ * affect_weight ) + tnl::Vector3(screen_w_ * 0.5f, screen_h_ * 0.5f, 0);
+		return world_position - ( m_position * affect_weight ) + tnl::Vector3(screen_w_ * 0.5f, screen_h_ * 0.5f, 0);
 	}
 
 	//------------------------------------------------------------------------------------------------------------
 	tnl::Vector3 Camera::convertScreenToWorldPosition2D(const tnl::Vector3& screen_position) {
-		return screen_position + position_ - tnl::Vector3(screen_w_ * 0.5f, screen_h_ * 0.5f, 0);
+		return screen_position + m_position - tnl::Vector3(screen_w_ * 0.5f, screen_h_ * 0.5f, 0);
 	}
 
 
 	//------------------------------------------------------------------------------------------------------------
 	void Camera::update() {
 		if (eDimension::Type3D == dimension_) {
-			view_ = tnl::Matrix::LookAtLH(position_, target_, up_);
+			view_ = tnl::Matrix::LookAtLH(m_position, target_, up_);
 			proj_ = tnl::Matrix::PerspectiveFovLH(angle_, aspect_, near_, far_);
 		}
 		else {
-			target_ = { position_.x, position_.y, 10 };
-			view_ = tnl::Matrix::LookAtLH({ position_.x, position_.y, -10 }, { target_.x, target_.y, 0 }, up_);
+			target_ = { m_position.x, m_position.y, 10 };
+			view_ = tnl::Matrix::LookAtLH({ m_position.x, m_position.y, -10 }, { target_.x, target_.y, 0 }, up_);
 			proj_ = tnl::Matrix::OrthoLH((float)screen_w_, (float)screen_h_, 1, 1000);
 		}
 
@@ -82,9 +82,9 @@ namespace dxe {
 		tnl::Matrix mt_trans;
 		tnl::Matrix mt_rot;
 		tnl::Matrix mt_obj_world;
-		mt_trans = tnl::Matrix::Translation(TNL_DEP_V3(position_));
+		mt_trans = tnl::Matrix::Translation(TNL_DEP_V3(m_position));
 
-		tnl::Quaternion rot = tnl::Quaternion::LookAt(position_, target_, up_);
+		tnl::Quaternion rot = tnl::Quaternion::LookAt(m_position, target_, up_);
 		mt_rot = rot.getMatrix();
 		MATRIX im;
 		mt_obj_world = mt_rot * mt_trans;
