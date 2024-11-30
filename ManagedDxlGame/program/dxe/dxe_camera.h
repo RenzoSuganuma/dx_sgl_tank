@@ -1,11 +1,12 @@
 #pragma once
+#include "../../sgl/sgl_actor.h"
 #include "../library/tnl_util.h"
 #include "../library/tnl_math.h"
 #include "../library/tnl_matrix.h"
 
 namespace dxe {
 
-	class Camera {
+	class Camera : public Actor {
 	public :
 
 		enum class eDimension{ Type2D, Type3D };

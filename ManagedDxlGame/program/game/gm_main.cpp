@@ -13,10 +13,15 @@
 auto level = Level::CreateShared();
 std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>(DXE_WINDOW_WIDTH_F, DXE_WINDOW_HEIGHT_F);
 
+void placeActorToLevel() {
+	level->AddActor(camera.get());
+}
+
 //------------------------------------------------------------------------------------------------------------
 // ゲーム起動時に１度だけ実行されます
 void gameStart() {
 	srand(time(0));
+	placeActorToLevel();
 	level->Initialize();
 }
 
