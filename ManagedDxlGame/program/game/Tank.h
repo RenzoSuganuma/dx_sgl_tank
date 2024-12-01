@@ -17,7 +17,7 @@ public:
 	};
 
 	std::shared_ptr<dxe::Mesh> m_mesh[static_cast<int>(eParts::Max)];
-	tnl::Vector3 m_partsSize[static_cast<int>(eParts::Max)] = { { 100,50,200 }, { 10,10,100 } };
+	tnl::Vector3 m_partsSize[static_cast<int>(eParts::Max)] = { { 100,50,200 }, { 10,10,200 } };
 
 	tnl::Vector3 m_partsOffset_pos[static_cast<int>(eParts::Max)];
 	tnl::Quaternion m_partsOffset_rot[static_cast<int>(eParts::Max)];
@@ -84,8 +84,26 @@ public:
 		float barr_x = m_partsOffset_pos[ind_barrel].x;
 		float barr_y = m_partsOffset_pos[ind_barrel].y;
 		float barr_z = m_partsOffset_pos[ind_barrel].z;
-		mesh_barrel->setPosition(m_position + tnl::Vector3(0, barr_y, 0) + tnl::Vector3::TransformCoord
-		({ 0,0,barr_z }, m_rotation * bar_rot_y * bar_rot_x));
+		mesh_barrel->setPosition(
+			m_position + tnl::Vector3(0, barr_y, 0) + tnl::Vector3::TransformCoord
+			({ 0,0,barr_z }, m_rotation * bar_rot_y * bar_rot_x));
+
+
+		// à⁄ìÆèàóù
+		if (!tnl::Input::IsMouseDown(eMouse::RIGHT)) {
+			if (tnl::Input::IsKeyDown(eKeys::KB_W)) {
+				m_position += tnl::Vector3::TransformCoord({ 0,0,1 }, m_rotation) * 3;
+			}
+			if (tnl::Input::IsKeyDown(eKeys::KB_S)) {
+				m_position += tnl::Vector3::TransformCoord({ 0,0,-1 }, m_rotation) * 3;
+			}
+			if (tnl::Input::IsKeyDown(eKeys::KB_A)) {
+				m_rotation *= m_rotation.RotationAxis({ 0,1,0 }, tnl::ToRadian(-1 * 3));
+			}
+			if (tnl::Input::IsKeyDown(eKeys::KB_D)) {
+				m_rotation *= m_rotation.RotationAxis({ 0,1,0 }, tnl::ToRadian(1 * 3));
+			}
+		}
 	}
 	// ÉÇÉWÉÖÅ[ÉãÇÃï`âÊ
 	void Draw() override {
