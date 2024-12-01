@@ -19,23 +19,27 @@ public:
 	}
 	// モジュールの更新
 	void Update(float delta_time) override {
-		// 姿勢を更新
-		tnl::Input::RunIndexKeyDown(
-			[&](uint32_t ind) {
-				tnl::Vector3 v[4] = {
-					left(),
-					right(),
-					forward().xz(),
-					back().xz()
-				};
-				addPosition(v[ind] * 3.0f);
-			}, eKeys::KB_A, eKeys::KB_D, eKeys::KB_W, eKeys::KB_S);
-		auto vlook = tnl::Input::GetMouseVelocity();
-		m_rotation *= tnl::Quaternion::RotationAxis({ 0,1,0 }, tnl::ToRadian(vlook.x * 0.1f));
-		m_rotation *= tnl::Quaternion::RotationAxis(right(), tnl::ToRadian(vlook.y * 0.1f));
-		// 姿勢パラメータからターゲット座標とアッパーベクトルを計算
-		target_ = m_position + tnl::Vector3::TransformCoord({ 0, 0, 1 }, m_rotation);
-		up_ = tnl::Vector3::TransformCoord({ 0, 1, 0 }, m_rotation);
+		if (tnl::Input::IsMouseDown(tnl::Input::eMouse::RIGHT)) {
+			// 姿勢を更新
+			tnl::Input::RunIndexKeyDown(
+				[&](uint32_t ind) {
+					tnl::Vector3 v[6] = {
+						left(),
+						right(),
+						forward().xz(),
+						back().xz(),
+						up().xy(),
+						-up().xy()
+					};
+					addPosition(v[ind] * 3.0f);
+				}, eKeys::KB_A, eKeys::KB_D, eKeys::KB_W, eKeys::KB_S, eKeys::KB_E, eKeys::KB_Q);
+			auto vlook = tnl::Input::GetMouseVelocity();
+			m_rotation *= tnl::Quaternion::RotationAxis({ 0,1,0 }, tnl::ToRadian(vlook.x * 0.1f));
+			m_rotation *= tnl::Quaternion::RotationAxis(right(), tnl::ToRadian(vlook.y * 0.1f));
+			// 姿勢パラメータからターゲット座標とアッパーベクトルを計算
+			target_ = m_position + tnl::Vector3::TransformCoord({ 0, 0, 1 }, m_rotation);
+			up_ = tnl::Vector3::TransformCoord({ 0, 1, 0 }, m_rotation);
+		}
 		dxe::Camera::update();
 	}
 	// モジュールの描画

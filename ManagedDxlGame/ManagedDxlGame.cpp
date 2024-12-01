@@ -49,7 +49,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
 
     // ウィンドウモードで起動
-    dxe::SetWindowMode(true);
+    dxe::SetWindowMode(!true);
 
     // ウィンドウサイズ設定
     SetGraphMode(DXE_WINDOW_WIDTH, DXE_WINDOW_HEIGHT, 32);
@@ -70,7 +70,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     SetDrawScreen(DX_SCREEN_BACK);
 
     // マウスポインタの表示状態を設定する
-    dxe::SetVisibleMousePointer(true);
+    dxe::SetVisibleMousePointer(!true);
 
     // ファイルドラッグの受付可否
     SetDragFileValidFlag(TRUE);
@@ -134,6 +134,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         if (tnl::Input::IsKeyDown(eKeys::KB_LALT, eKeys::KB_RALT)) {
             if (tnl::Input::IsKeyDownTrigger(eKeys::KB_RETURN)) {
                 dxe::SetWindowMode(!dxe::GetWindowMode());
+            }
+        }
+        
+        // アプリケーションを終わる
+        if (tnl::Input::IsKeyDown(eKeys::KB_LALT, eKeys::KB_RALT)) {
+            if (tnl::Input::IsKeyDownTrigger(eKeys::KB_ESCAPE)) {
+                dxe::ExitApplication();
             }
         }
 
