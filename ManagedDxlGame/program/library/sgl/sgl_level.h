@@ -22,8 +22,8 @@ public:
 	}
 
 	DEF_Create_shared_ptr(Level)
-
-		void  Initialize();
+public:
+	void  Initialize();
 	void  Update(float deltaTime);
 	void  Draw();
 	void  Finalize();

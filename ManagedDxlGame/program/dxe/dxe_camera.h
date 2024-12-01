@@ -7,9 +7,9 @@
 namespace dxe {
 
 	class Camera : public Actor {
-	public :
+	public:
 
-		enum class eDimension{ Type2D, Type3D };
+		enum class eDimension { Type2D, Type3D };
 		Camera(float screen_w, float screen_h, const eDimension dimension = eDimension::Type3D);
 		virtual ~Camera() {}
 
@@ -59,14 +59,14 @@ namespace dxe {
 		// arg2... カメラ座標の影響をどれだけ受けるか
 		// ret.... スクリーン座標
 		// tips... 2D カメラ用
-		tnl::Vector3 convertWorldToScreenPosition2D( const tnl::Vector3& world_position, float affect_weight = 1.0f );
+		tnl::Vector3 convertWorldToScreenPosition2D(const tnl::Vector3& world_position, float affect_weight = 1.0f);
 
 		//----------------------------------------------------------------------------------------------
 		// work... スクリーン座標をゲーム空間座標へ変換
 		// arg1... スクリーン座標
 		// ret.... ゲーム空間座標
 		// tips... 2D カメラ用
-		tnl::Vector3 convertScreenToWorldPosition2D( const tnl::Vector3& screen_position );
+		tnl::Vector3 convertScreenToWorldPosition2D(const tnl::Vector3& screen_position);
 
 
 		//----------------------------------------------------------------------------------------------
@@ -75,18 +75,18 @@ namespace dxe {
 		// ret.... 視錐台平面の法線
 		// tips... 3D カメラ用
 		enum class eFlustum { Left, Right, Bottom, Top, Near, Far, Max };
-		tnl::Vector3 getFlustumNormal(eFlustum flusum) ;
+		tnl::Vector3 getFlustumNormal(eFlustum flusum);
 
 		// 更新
-		void update() ;
+		void update();
 
 		// デバッグ用 カメラ描画
 		// arg1... スケール
 		// arg2... 色
 		// tips... 3D 用
-		void render(float scale, uint32_t color = 0xffffff00) const ;
+		void render(float scale, uint32_t color = 0xffffff00) const;
 
-	protected :
+	protected:
 		Camera() {}
 		eDimension dimension_ = eDimension::Type3D;
 
