@@ -113,7 +113,6 @@ public:
 	}
 	// モジュールの内での解放
 	void Release() override {
-
 	}
 	// モジュールの破棄
 	void Finalize() override {
