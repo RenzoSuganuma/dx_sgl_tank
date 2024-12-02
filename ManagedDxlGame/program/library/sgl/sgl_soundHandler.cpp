@@ -1,16 +1,14 @@
-﻿#include "DxLib.h"
+﻿#include "string"
+#include "DxLib.h"
 #include "sgl_soundHandler.h"
 
-namespace sgl::runtime::system
-{
+namespace sgl {
+	std::unordered_map< std::string, int > soundHandlers;
 
-	std::list< int > soundHandlers;
-
-	const int LoadSoundToMemory(const std::string filePath)
+	const void LoadSoundToMemory(const std::string filePath, const std::string soundKey)
 	{
-		int sh = LoadSoundMem(filePath.c_str());
-		soundHandlers.emplace_back(sh);
-		return sh;
+		int num = LoadSoundMem(filePath.c_str());
+		soundHandlers.insert(std::make_pair(soundKey, num));
 	}
 
 	void PlaySoundFromMemory(const int soundHandler, const SoundPlayMode soundPlayMode)
@@ -24,10 +22,8 @@ namespace sgl::runtime::system
 		case SoundPlayMode::BackGround:
 			mode = DX_PLAYTYPE_BACK;
 			break;
-		case SoundPlayMode::Loop:
+		default:	// Loop
 			mode = DX_PLAYTYPE_LOOP;
-			break;
-		default:
 			break;
 		}
 		PlaySoundMem(soundHandler, mode);
