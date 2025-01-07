@@ -4,9 +4,13 @@
 #include "../library/sgl/sgl_level.h"
 #include "../library/sgl/sgl_actor.h"
 #include "../library/sgl/sgl_lang_extention.h"
+#include "../library/sgl/sgl_soundHandler.h"
 
 // 戦車のクラス
 class Tank final : public Actor {
+private :
+	std::string fireSFXName_ = "tank_fire_sfx";
+
 public:
 	DEF_Create_shared_ptr(Tank)
 public:
@@ -27,6 +31,9 @@ public:
 	// モジュールの初期化
 	void Initialize() override {
 		m_name = "Tank";
+
+		// 効果音の読み込み
+		sgl::LoadSoundToMemory(FILE_PATH_WAV_SE_SAMPLE_2, fireSFXName_);
 
 		// ボディ
 		m_mesh[static_cast<int>(eParts::Body)] = dxe::Mesh::CreateBoxMV(
@@ -129,6 +136,11 @@ public:
 			if (tnl::Input::IsKeyDown(eKeys::KB_D)) {
 				m_rotation *= m_rotation.RotationAxis({ 0,1,0 }, tnl::ToRadian(1 * 3));
 			}
+		}
+
+		// 発射
+		if (tnl::Input::IsMouseTrigger(eMouseTrigger::IN_LEFT)) {
+			sgl::PlaySoundFromMemory(fireSFXName_);
 		}
 	}
 	// モジュールの描画
